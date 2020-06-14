@@ -14,7 +14,7 @@ const products = [
 
     {
         name: "fruits",
-        quantity: 500,
+        quantity: 150,
         unit: "kilo"
     },
     {
@@ -25,51 +25,49 @@ const products = [
 
 ];
 
-//funcaion number 1 show the products//
 
-function getproducts(products) {
-    return (products);
-}
-//call the function//
-getproducts(products);
-
-//funcation number 2 add new product chocolate//
-
-function addnewproduct(name, quantity, type) {
-    products.push({ name: name, quantity: quantity, type: type });
-    return (products);
+function getProducts(products) {
+    // const productsList = [...products]
+    console.log(products);
 }
 
-addnewproduct("chocolate", 120, "bar");
-addnewproduct("zabado", 120, "bottle");
+getProducts(products);
 
-//call the function//  
-console.log(products);
 
-//vaidation for the addnewproduct//
-function addnewproduct(name, quantity, type) {
-    if (name !=== "string") {
-        throw new error(`${name} is not a string`);
+function addNewProduct(name, quantity, type) {
+    products.push({ name, quantity, type });
+    validation();
+    getProducts(products)
 
-        if (quantity !=== "numer") {
-            throw new error(`${quantity} is not a number`);
+}
+addNewProduct("chocolate", 120, "bar");
+addNewProduct("zabado", 120, "bottle");
+
+function validation(name, quantity, type) {
+
+    for (i = 0; i < products.length; i++) {
+
+
+        if (typeof products[i].name !== "string") {
+            throw new Error(products[i].name + ` is not a string`);
         }
-        if (type !=== "string") {
-            throw new error(`${type} is not a string`);
+
+        else if (typeof products[i].quantity !== "number") {
+            throw new Error(products[i].quantity + ` is not a number`);
         }
-        return (addnewproduct);
+        else if (typeof products[i].type !== "string") {
+            throw new Error(products[i].type + `  is not a string`);
+        }
     }
+}
 
-    // funcation number 3 update tomato quantity to 20//
+function updateNewQuantity(productName, newQuantity) {
+    const oldProducts = [...products];
 
-    function updatenewquantity(productName, newQuantity) {
-        const oldproducts = [...products];
-        for (let i = 0; i <= oldproducts.length - 1; i++) {
-            if (oldproducts[i].name === productname) {
-                oldproducts[i].quantity = newquantity;
-                return getproducts(oldproducts);
-            }
-        }
-
+    for (let i = 0; i < oldProducts.length; i++) {
+        if (oldProducts[i].name == productName) { oldProducts[i].quantity = newQuantity }
+        getProducts()
     }
-    updatenewquantity("tomato", 20);
+    validation();
+}
+updateNewQuantity("tomato", 20)
